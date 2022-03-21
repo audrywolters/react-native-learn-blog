@@ -9,10 +9,10 @@ const IndexScreen = () => {
 
 	return (
 		<View>
+												{/* onPress={() => addBlogPost()}/> */}
 			<TouchableOpacity style={styles.button} onPress={addBlogPost}>
 				<Text style={styles.buttonText}>Add Post</Text>
 			</TouchableOpacity>
-			{/* onPress={() => addBlogPost()}/> */}
 			<FlatList
 				data={state}
 				keyExtractor={(blogPost) => blogPost.title}
