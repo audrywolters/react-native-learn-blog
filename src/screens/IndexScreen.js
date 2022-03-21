@@ -9,7 +9,7 @@ const IndexScreen = () => {
 
 	return (
 		<View>
-												{/* onPress={() => addBlogPost()}/> */}
+													{/* onPress={() => addBlogPost()}/> */}
 			<TouchableOpacity style={styles.button} onPress={addBlogPost}>
 				<Text style={styles.buttonText}>Add Post</Text>
 			</TouchableOpacity>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		margin: 8,
 		backgroundColor: 'black',
-		height: 50
+		height: 55
 	},
 	buttonText: {
 		fontSize: 18,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		marginBottom: 5,
 		marginHorizontal: 8,
-		paddingVertical: 10,
+		paddingVertical: 15,
 		paddingHorizontal: 20,
 		borderWidth: 2,
 		borderColor: 'darkgray'
