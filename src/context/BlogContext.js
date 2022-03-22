@@ -11,7 +11,7 @@ const blogReducer = (state, action) => {
 				}
 			]
 		case 'delete_blogPost':
-			return state.filter((blogPost) => blogPost.id !== action.payload)
+			return state.filter((bP) => bP.id !== action.payload)
 		default:
 			return state
 	}
