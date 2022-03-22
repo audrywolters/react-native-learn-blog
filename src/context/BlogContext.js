@@ -25,7 +25,6 @@ const addBlogPost = (dispatch) => {
 
 const deleteBlogPost = (dispatch) => {
 	return (id) => {
-		console.log('inside delete blog post')
 		dispatch({ type: 'delete_blogPost', payload: id })
 	}
 }
