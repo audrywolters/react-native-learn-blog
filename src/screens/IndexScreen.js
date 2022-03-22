@@ -24,9 +24,9 @@ const IndexScreen = ({ navigation }) => {
 							onPress={() => navigation.navigate('Show', { id: item.id })}
 						>
 							{/* AUDRY - add style for View (have marigins) */}
-							<View style={styles.row}>
+							<View style={[styles.parent, styles.row]}>
 								<Text style={styles.title}>
-									{item.title} - {item.id}
+									{item.title}
 								</Text>
 								<TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
 									<Feather style={styles.icon} name="trash-2" />
@@ -44,32 +44,25 @@ IndexScreen.navigationOptions = ({ navigation }) => {
 	return {
 		headerRight: () => (
 			<TouchableOpacity onPress={() => navigation.navigate('Create')}>
-				<Entypo style={styles.createButton} name="circle-with-plus" size={35} />
+				<Entypo style={styles.createButton} name="circle-with-plus" />
 			</TouchableOpacity>
 		)
 	}
 }
 
 const styles = StyleSheet.create({
+	parent: {
+		flex: 1,
+		marginHorizontal: 5,
+		marginTop: 5
+	},
 	createButton: {
-		marginRight: 15
-	},
-	button: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		margin: 8,
-		backgroundColor: 'black',
-		height: 55
-	},
-	buttonText: {
-		fontSize: 18,
-		color: 'white'
+		fontSize: 32,
+		marginRight: 25
 	},
 	row: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		marginBottom: 5,
-		marginHorizontal: 8,
 		paddingVertical: 15,
 		paddingHorizontal: 20,
 		borderWidth: 2,
