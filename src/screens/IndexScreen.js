@@ -11,14 +11,10 @@ import { Feather } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
 
 const IndexScreen = ({ navigation }) => {
-	const { state, addBlogPost, deleteBlogPost } = useContext(Context)
+	const { state, deleteBlogPost } = useContext(Context)
 
 	return (
 		<View>
-			{/* onPress={() => addBlogPost()}/> */}
-			<TouchableOpacity style={styles.button} onPress={addBlogPost}>
-				<Text style={styles.buttonText}>Add Post</Text>
-			</TouchableOpacity>
 			<FlatList
 				data={state}
 				keyExtractor={(blogPost) => blogPost.id}
@@ -27,6 +23,7 @@ const IndexScreen = ({ navigation }) => {
 						<TouchableOpacity
 							onPress={() => navigation.navigate('Show', { id: item.id })}
 						>
+							{/* AUDRY - add style for View (have marigins) */}
 							<View style={styles.row}>
 								<Text style={styles.title}>
 									{item.title} - {item.id}

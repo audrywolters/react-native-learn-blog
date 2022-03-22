@@ -19,8 +19,17 @@ const blogReducer = (state, action) => {
 }
 
 const addBlogPost = (dispatch) => {
-	return (title, content) => {
-		dispatch({ type: 'add_blogPost', payload: { title, content } })
+	return (title, content, callback) => {
+		// leaving commented lines for reference - in case i want to copy if using a backend/api
+		// don't forget aysnc keyword
+
+		// try {
+		// 	await axios.post('asdfjkl;', title, content)
+			dispatch({ type: 'add_blogPost', payload: { title, content } })
+			callback()
+		// } catch (e) {
+		// 	// do something useful
+		// }
 	}
 }
 

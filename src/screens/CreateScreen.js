@@ -8,14 +8,13 @@ import {
 } from 'react-native'
 import { Context } from '../context/BlogContext'
 
-const CreateScreen = () => {
+const CreateScreen = ({ navigation }) => {
 	// have state for just this view. text inputs need help like that.
 	const [title, setTitle] = useState('')
 	const [content, setContent] = useState('')
 
 	// hook up context for all app to share
 	const { addBlogPost } = useContext(Context)
-
 
 	return (
 		<View style={styles.parent}>
@@ -31,7 +30,17 @@ const CreateScreen = () => {
 				value={content}
 				onChangeText={(text) => setContent(text)}
 			/>
-			<TouchableOpacity style={styles.button} onPress={() => addBlogPost(title, content)}>
+			<TouchableOpacity
+				style={styles.button}
+				onPress={() => {
+					// call the reducer to add data to store
+					addBlogPost(title, content, () => {
+						// then in callback (for future saftey waiting type thing)
+						// head back to index screen
+						navigation.navigate('Index')
+					})
+				}}
+			>
 				<Text style={styles.buttonText}>Add Blog Post</Text>
 			</TouchableOpacity>
 		</View>
