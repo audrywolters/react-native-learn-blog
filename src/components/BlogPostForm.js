@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-const BlogPostForm = ({ onSubmit }) => {
+const BlogPostForm = ({ initialValues, onSubmit }) => {
 	// have state for just this view. text inputs need help like that.
-	const [title, setTitle] = useState('')
-	const [content, setContent] = useState('')
+	const [title, setTitle] = useState(initialValues.title)
+	const [content, setContent] = useState(initialValues.content)
 
 	return (
 		<View style={styles.parent}>
@@ -34,6 +34,15 @@ const BlogPostForm = ({ onSubmit }) => {
 			</TouchableOpacity>
 		</View>
 	)
+}
+
+// i don't like this
+// we should just send empty strings from the Parent that doesn't want any data
+BlogPostForm.defaultProps = {
+	initialValues: {
+		title: '',
+		content: ''
+	}
 }
 
 const styles = StyleSheet.create({

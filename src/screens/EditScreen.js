@@ -8,7 +8,10 @@ const EditScreen = ({ navigation }) => {
 	const blogPost = state.find((bP) => bP.id === navigation.getParam('id'))
 
 	return (
-		<BlogPostForm />
+		<BlogPostForm
+			initialValues={{ title: blogPost.title, content: blogPost.content }}
+			onSubmit={(title, content) => console.log(title, content)}
+		/>
 	)
 }
 

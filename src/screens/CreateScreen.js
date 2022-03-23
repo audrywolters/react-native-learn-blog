@@ -9,6 +9,7 @@ const CreateScreen = ({ navigation }) => {
 
 	return (
 		<BlogPostForm
+			// pass this function (it's from Context store) to BlogPostForm
 			onSubmit={(title, content) => {
 				addBlogPost(title, content, () => navigation.navigate('Index'))
 			}}
