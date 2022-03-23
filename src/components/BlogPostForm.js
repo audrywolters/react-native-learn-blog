@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-const BlogPostForm = () => {
+const BlogPostForm = ({ onSubmit }) => {
 	// have state for just this view. text inputs need help like that.
 	const [title, setTitle] = useState('')
 	const [content, setContent] = useState('')
@@ -22,11 +22,13 @@ const BlogPostForm = () => {
 			/>
 			<TouchableOpacity
 				style={styles.button}
-				onPress={() => {
-					// add data to store
-					console.log(`add ${title} and ${content} to store. love, BlogPostForm`)
-
-				}}
+				// getting 'onSubmit' from some Parent === (Create || Edit)
+				// this (BlogPostForm) is told by Parent to send 
+				// title and content to 'onSubmit'
+				// whichever Parent told this (BlogPostForm) to send data
+				// has also sent a callback to the store
+				// but worry about that in the Parent
+				onPress={() => onSubmit(title, content)}
 			>
 				<Text style={styles.buttonText}>Save Blog Post</Text>
 			</TouchableOpacity>
