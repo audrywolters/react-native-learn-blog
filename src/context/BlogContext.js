@@ -25,8 +25,8 @@ const addBlogPost = (dispatch) => {
 
 		// try {
 		// 	await axios.post('asdfjkl;', title, content)
-			dispatch({ type: 'add_blogPost', payload: { title, content } })
-			callback()
+		dispatch({ type: 'add_blogPost', payload: { title, content } })
+		callback()
 		// } catch (e) {
 		// 	// do something useful
 		// }
@@ -42,5 +42,6 @@ const deleteBlogPost = (dispatch) => {
 export const { Context, Provider } = createDataContext(
 	blogReducer,
 	{ addBlogPost, deleteBlogPost },
-	[]
+	// here is a dummy blog post so we can test code w/o having to make one manually
+	[{ title: 'test title', content: 'test content', id: 1 }]
 )

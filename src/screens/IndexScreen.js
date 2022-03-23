@@ -23,7 +23,6 @@ const IndexScreen = ({ navigation }) => {
 						<TouchableOpacity
 							onPress={() => navigation.navigate('Show', { id: item.id })}
 						>
-							{/* AUDRY - add style for View (have marigins) */}
 							<View style={[styles.parent, styles.row]}>
 								<Text style={styles.title}>
 									{item.title}

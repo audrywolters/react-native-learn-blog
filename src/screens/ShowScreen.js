@@ -16,10 +16,14 @@ const ShowScreen = ({ navigation }) => {
 	)
 }
 
-ShowScreen.navigationOptions = () => {
+ShowScreen.navigationOptions = ({ navigation }) => {
 	return {
 		headerRight: () => (
-			<TouchableOpacity>
+			<TouchableOpacity
+				onPress={() =>
+					navigation.navigate('Edit', { id: navigation.getParam('id') })
+				}
+			>
 				<FontAwesome style={styles.editButton} name="pencil" />
 			</TouchableOpacity>
 		)
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
 	editButton: {
 		fontSize: 32,
 		marginRight: 25
-	},
+	}
 })
 
 export default ShowScreen
