@@ -11,10 +11,10 @@ import { Feather } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
 
 const IndexScreen = ({ navigation }) => {
-	const { state, deleteBlogPost, getBlogPosts } = useContext(Context)
+	const { state, deleteBlogPost, getBlogPostList } = useContext(Context)
 
 	useEffect(() => {
-		getBlogPosts()
+		getBlogPostList()
 	}, [])
 
 

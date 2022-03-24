@@ -28,7 +28,7 @@ const blogReducer = (state, action) => {
 				// here is ternary if you like that instead
 				// return bP.id === action.payload.id ? action.payload : bP
 			})
-		case 'get_blogPosts':
+		case 'get_blogPostList':
 			// this will be coming from the api (json-server)
 			return action.payload
 		default:
@@ -75,12 +75,12 @@ const editBlogPost = (dispatch) => {
 	}
 }
 
-getBlogPosts = (dispatch) => {
+getBlogPostList = (dispatch) => {
 	return async () => {
 		try {
 			// response.data === [{}, {}, {}]
-			const response = await jsonServer.get('/blogPosts') 
-			dispatch({ type: 'get_blogPosts', payload: response.data })
+			const response = await jsonServer.get('/blogPostList') 
+			dispatch({ type: 'get_blogPostList', payload: response.data })
 
 			console.log(response.data)
 		} catch (e) {
@@ -91,6 +91,6 @@ getBlogPosts = (dispatch) => {
 
 export const { Context, Provider } = createDataContext(
 	blogReducer,
-	{ addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts },
+	{ addBlogPost, deleteBlogPost, editBlogPost, getBlogPostList },
 	[]
 )
