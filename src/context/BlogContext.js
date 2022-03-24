@@ -57,7 +57,7 @@ const editBlogPost = (dispatch) => {
 	return (id, title, content) => {
 		dispatch({
 			type: 'edit_blogPost',
-			// can condense this: (id, title, content)
+			// can sugar-syntax this: (id, title, content)
 			// but leaving it for reference
 			payload: { id: id, title: title, content: content }
 		})

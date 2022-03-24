@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
 const BlogPostForm = ({ initialValues, onSubmit }) => {
-	// Create doesn't send anything. look to defaultProps for empty strings.
+	// the Create Parent doesn't send anything. look to defaultProps for empty strings.
 	const [title, setTitle] = useState(initialValues.title)
 	const [content, setContent] = useState(initialValues.content)
 
@@ -23,9 +23,10 @@ const BlogPostForm = ({ initialValues, onSubmit }) => {
 			<TouchableOpacity
 				style={styles.button}
 				// getting 'onSubmit' from some Parent === (Create || Edit)
-				// this (BlogPostForm) is told by Parent to send 
+				// BlogPostForm is told by Parent to send 
 				// title and content to 'onSubmit'
-				// whichever Parent told this (BlogPostForm) to send data
+				//
+				// whichever Parent told BlogPostForm to send data
 				// has also sent a callback to the store
 				// but worry about that in the Parent
 				onPress={() => onSubmit(title, content)}

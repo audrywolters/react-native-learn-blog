@@ -14,6 +14,10 @@ const EditScreen = ({ navigation }) => {
 			onSubmit={(title, content) =>
 				// why does 'title' on its own, work instead of blogPost.title?
 				editBlogPost(id, title, content)
+				// i guess because BlogPostForm will know what it is ... i think
+				//
+				// 'blogPost.title' is the old data
+				// 'title' is the new data hidden inside BlogPostForm
 			}
 		/>
 	)
