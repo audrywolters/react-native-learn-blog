@@ -12,7 +12,7 @@ const EditScreen = ({ navigation }) => {
 		<BlogPostForm
 			initialValues={{ title: blogPost.title, content: blogPost.content }}
 			onSubmit={(title, content) =>
-				// why does 'title' etc. on its own work instead of blogPost.title?
+				// why does 'title' on its own, work instead of blogPost.title?
 				editBlogPost(id, title, content)
 			}
 		/>
