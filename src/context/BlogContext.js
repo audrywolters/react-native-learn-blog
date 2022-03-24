@@ -75,7 +75,7 @@ const editBlogPost = (dispatch) => {
 	}
 }
 
-getBlogPostList = (dispatch) => {
+const getBlogPostList = (dispatch) => {
 	return async () => {
 		try {
 			// response.data === [{}, {}, {}]
