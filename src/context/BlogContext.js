@@ -81,8 +81,6 @@ const getBlogPostList = (dispatch) => {
 			// response.data === [{}, {}, {}]
 			const response = await jsonServer.get('/blogPostList') 
 			dispatch({ type: 'get_blogPostList', payload: response.data })
-
-			console.log(response.data)
 		} catch (e) {
 			console.log(`couldn't get blogposts! error: ${e}`)
 		}
