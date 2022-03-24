@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
 const BlogPostForm = ({ initialValues, onSubmit }) => {
-	// have state for just this view. text inputs need help like that.
+	// Create doesn't send anything. look to defaultProps for empty strings.
 	const [title, setTitle] = useState(initialValues.title)
 	const [content, setContent] = useState(initialValues.content)
 
