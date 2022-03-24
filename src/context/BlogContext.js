@@ -38,9 +38,12 @@ const addBlogPost = (dispatch) => {
 		// don't forget aysnc keyword
 
 		// try {
-		// 	await axios.post('asdfjkl;', title, content)
+		// 	await axios.post('asdfjkl', title, content)
 		dispatch({ type: 'add_blogPost', payload: { title, content } })
-		callback()
+		// callback() === navigation.navigate('Index') - for now
+		if (callback) {
+			callback()
+		}
 		// } catch (e) {
 		// 	// do something useful
 		// }
@@ -54,13 +57,17 @@ const deleteBlogPost = (dispatch) => {
 }
 
 const editBlogPost = (dispatch) => {
-	return (id, title, content) => {
+	return (id, title, content, callback) => {
 		dispatch({
 			type: 'edit_blogPost',
 			// can sugar-syntax this: (id, title, content)
 			// but leaving it for reference
 			payload: { id: id, title: title, content: content }
 		})
+		// callback === navigation.pop() - for now
+		if (callback) {
+			callback()
+		}
 	}
 }
 
