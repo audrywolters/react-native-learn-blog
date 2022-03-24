@@ -77,10 +77,15 @@ const editBlogPost = (dispatch) => {
 
 getBlogPosts = (dispatch) => {
 	return async () => {
-		// response.data === [{}, {}, {}]
-		const response = await jsonServer.get('/blogPosts')
+		try {
+			// response.data === [{}, {}, {}]
+			const response = await jsonServer.get('/blogPosts') 
+			dispatch({ type: 'get_blogPosts', payload: response.data })
 
-		dispatch({ type: 'get_blogPosts', payload: response.data })
+			console.log(response.data)
+		} catch (e) {
+			console.log(`couldn't get blogposts! error: ${e}`)
+		}
 	}
 }
 
