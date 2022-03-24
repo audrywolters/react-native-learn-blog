@@ -4,13 +4,17 @@ import { Context } from '../context/BlogContext'
 import BlogPostForm from '../components/BlogPostForm'
 
 const EditScreen = ({ navigation }) => {
-	const { state } = useContext(Context)
-	const blogPost = state.find((bP) => bP.id === navigation.getParam('id'))
+	const id = navigation.getParam('id');
+	const { state, editBlogPost } = useContext(Context)
+	const blogPost = state.find((bP) => bP.id === id)
 
 	return (
 		<BlogPostForm
 			initialValues={{ title: blogPost.title, content: blogPost.content }}
-			onSubmit={(title, content) => console.log(title, content)}
+			onSubmit={(title, content) =>
+				// why does 'title' etc. on its own work instead of blogPost.title?
+				editBlogPost(id, title, content)
+			}
 		/>
 	)
 }

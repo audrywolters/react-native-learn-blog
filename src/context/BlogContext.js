@@ -13,6 +13,20 @@ const blogReducer = (state, action) => {
 			]
 		case 'delete_blogPost':
 			return state.filter((bP) => bP.id !== action.payload)
+		case 'edit_blogPost':
+			// create a new array for state
+			// that has all exsisting blog posts
+			// except the new one so we can keep the changes
+			return state.map((bP) => {
+				if (bP.id === action.payload.id) {
+					return action.payload
+				} else {
+					return bP
+				}
+
+				// here is ternary if you like that instead
+				// return bP.id === action.payload.id ? action.payload : bP
+			})
 		default:
 			return state
 	}
@@ -39,9 +53,20 @@ const deleteBlogPost = (dispatch) => {
 	}
 }
 
+const editBlogPost = (dispatch) => {
+	return (id, title, content) => {
+		dispatch({
+			type: 'edit_blogPost',
+			// can condense this: (id, title, content)
+			// but leaving it for reference
+			payload: { id: id, title: title, content: content }
+		})
+	}
+}
+
 export const { Context, Provider } = createDataContext(
 	blogReducer,
-	{ addBlogPost, deleteBlogPost },
+	{ addBlogPost, deleteBlogPost, editBlogPost },
 	// here is a dummy blog post so we can test code w/o having to make one manually
 	[{ title: 'test title', content: 'test content', id: 1 }]
 )
