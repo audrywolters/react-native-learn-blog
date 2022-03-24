@@ -1,4 +1,5 @@
 import createDataContext from '../context/createDataContext'
+import jsonServer from '../api/jsonServer'
 
 const blogReducer = (state, action) => {
 	switch (action.type) {
@@ -27,6 +28,9 @@ const blogReducer = (state, action) => {
 				// here is ternary if you like that instead
 				// return bP.id === action.payload.id ? action.payload : bP
 			})
+		case 'get_blogPosts':
+			// this will be coming from the api (json-server)
+			return action.payload
 		default:
 			return state
 	}
@@ -71,9 +75,17 @@ const editBlogPost = (dispatch) => {
 	}
 }
 
+getBlogPosts = (dispatch) => {
+	return async () => {
+		// response.data === [{}, {}, {}]
+		const response = await jsonServer.get('/blogPosts')
+
+		dispatch({ type: 'get_blogPosts', payload: response.data })
+	}
+}
+
 export const { Context, Provider } = createDataContext(
 	blogReducer,
-	{ addBlogPost, deleteBlogPost, editBlogPost },
-	// here is a dummy blog post so we can test code w/o having to make one manually
-	[{ title: 'test title', content: 'test content', id: 1 }]
+	{ addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts },
+	[]
 )
