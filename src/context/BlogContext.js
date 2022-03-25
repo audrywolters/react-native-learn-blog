@@ -42,8 +42,14 @@ const addBlogPost = (dispatch) => {
 }
 
 const deleteBlogPost = (dispatch) => {
-	return (id) => {
-		dispatch({ type: 'delete_blogPost', payload: id })
+	return async (id) => {
+		try {
+			await jsonServer.delete(`/blogPostList/${id}`)
+			// using frontend to refresh index page instead of server
+			dispatch({ type: 'delete_blogPost', payload: id })
+		} catch (e) {
+			console.log(`couldn't delete blog post id:${id}! ${e}`)
+		}
 	}
 }
 
