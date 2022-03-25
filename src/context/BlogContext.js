@@ -28,8 +28,8 @@ const blogReducer = (state, action) => {
 const addBlogPost = (dispatch) => {
 	return async (title, content, callback) => {
 		try {
-			// post means write something in the DB
-			await jsonServer.post('/blogPostList', { title: title, content: content })
+			// add new to DB
+			await jsonServer.post('/blogPostList', { title, content })
 
 			// callback() === navigation.navigate('Index')
 			if (callback) {
@@ -44,6 +44,7 @@ const addBlogPost = (dispatch) => {
 const deleteBlogPost = (dispatch) => {
 	return async (id) => {
 		try {
+			// delete from DB
 			await jsonServer.delete(`/blogPostList/${id}`)
 			// using frontend to refresh index page instead of server
 			dispatch({ type: 'delete_blogPost', payload: id })
@@ -54,17 +55,29 @@ const deleteBlogPost = (dispatch) => {
 }
 
 const editBlogPost = (dispatch) => {
-	return (id, title, content, callback) => {
-		dispatch({
-			type: 'edit_blogPost',
-			// can sugar-syntax this: (id, title, content)
-			// but leaving it for reference
-			payload: { id: id, title: title, content: content }
-		})
-		// callback === navigation.pop() - for now
-		if (callback) {
-			callback()
+	return async (id, title, content, callback) => {
+		try {
+			// update in DB
+			await jsonServer.put(`/blogPostList/${id}`, { title, content })
+
+			// have to keep this to update Show Screen
+			// otherwise index screen will refresh on navigating back
+			dispatch({
+				type: 'edit_blogPost',
+				// can sugar-syntax this: (id, title, content)
+				// but leaving it for reference
+				payload: { id: id, title: title, content: content }
+			})
+
+
+			// callback === navigation.pop()
+			if (callback) {
+				callback()
+			}
+		} catch (e) {
+			console.log(`couldn't update blog post id:${id}`)
 		}
+
 	}
 }
 

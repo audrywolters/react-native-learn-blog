@@ -16,10 +16,7 @@ const IndexScreen = ({ navigation }) => {
 	useEffect(() => {
 		getBlogPostList()
 
-		// refreshing list with get on navigating back
-		// why doesn't this work for all navigating back...
-		// delete we don't navigate back. so that's why it needs reducer to refresh state
-		// i'm guessing edit will refresh with this listener
+		// refreshing list with a Get on navigating back
 		const listener = navigation.addListener('didFocus', () => {
 			getBlogPostList()
 		})
