@@ -13,6 +13,7 @@ import { Entypo } from '@expo/vector-icons'
 const IndexScreen = ({ navigation }) => {
 	const { state, deleteBlogPost, getBlogPostList } = useContext(Context)
 
+	// only run this on initial load
 	useEffect(() => {
 		getBlogPostList()
 	}, [])
