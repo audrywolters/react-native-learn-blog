@@ -4,15 +4,6 @@ import jsonServer from '../api/jsonServer'
 const blogReducer = (state, action) => {
 	// reducer action.type is case sensitive
 	switch (action.type) {
-		case 'add_blogPost':
-			return [
-				...state,
-				{
-					id: Math.floor(Math.random() * 99999),
-					title: action.payload.title,
-					content: action.payload.content
-				}
-			]
 		case 'delete_blogPost':
 			return state.filter((bP) => bP.id !== action.payload)
 		case 'edit_blogPost':
@@ -25,9 +16,6 @@ const blogReducer = (state, action) => {
 				} else {
 					return bP
 				}
-
-				// here is ternary if you like that instead
-				// return bP.id === action.payload.id ? action.payload : bP
 			})
 		case 'get_blogPostList':
 			// this will be coming from the api (json-server)
@@ -39,22 +27,17 @@ const blogReducer = (state, action) => {
 
 const addBlogPost = (dispatch) => {
 	return async (title, content, callback) => {
-		// post means write something in the DB
-		await jsonServer.post('/blogPostList', { title: title, content: content })
+		try {
+			// post means write something in the DB
+			await jsonServer.post('/blogPostList', { title: title, content: content })
 
-		// leaving commented lines for reference - in case i want to copy if using a backend/api
-		// don't forget aysnc keyword
-
-		// try {
-		// 	await axios.post('asdfjkl', title, content)
-		// dispatch({ type: 'add_blogPost', payload: { title, content } })
-		// // callback() === navigation.navigate('Index') - for now
-		if (callback) {
-			callback()
+			// callback() === navigation.navigate('Index')
+			if (callback) {
+				callback()
+			}
+		} catch (e) {
+			console.log(`couldn't add a new blog post! ${e}`)
 		}
-		// } catch (e) {
-		// 	// do something useful
-		// }
 	}
 }
 
