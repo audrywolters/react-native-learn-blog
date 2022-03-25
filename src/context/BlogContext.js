@@ -38,14 +38,17 @@ const blogReducer = (state, action) => {
 }
 
 const addBlogPost = (dispatch) => {
-	return (title, content, callback) => {
+	return async (title, content, callback) => {
+		// post means write something in the DB
+		await jsonServer.post('/blogPostList', { title: title, content: content })
+
 		// leaving commented lines for reference - in case i want to copy if using a backend/api
 		// don't forget aysnc keyword
 
 		// try {
 		// 	await axios.post('asdfjkl', title, content)
-		dispatch({ type: 'add_blogPost', payload: { title, content } })
-		// callback() === navigation.navigate('Index') - for now
+		// dispatch({ type: 'add_blogPost', payload: { title, content } })
+		// // callback() === navigation.navigate('Index') - for now
 		if (callback) {
 			callback()
 		}
@@ -81,7 +84,7 @@ const getBlogPostList = (dispatch) => {
 		try {
 			// response.data === [{}, {}, {}]
 			// server address isn't case sensitive - i'm just following my convention
-			const response = await jsonServer.get('/blogPostList') 
+			const response = await jsonServer.get('/blogPostList')
 			// reducer IS case sensitive
 			dispatch({ type: 'get_blogPostList', payload: response.data })
 		} catch (e) {
