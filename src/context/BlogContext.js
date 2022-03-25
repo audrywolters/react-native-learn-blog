@@ -95,6 +95,7 @@ const getBlogPostList = (dispatch) => {
 	}
 }
 
+// pass all this stuff to createDataContext so we can make it available to everyone
 export const { Context, Provider } = createDataContext(
 	blogReducer,
 	{ addBlogPost, deleteBlogPost, editBlogPost, getBlogPostList },
