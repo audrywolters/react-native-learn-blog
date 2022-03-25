@@ -2,6 +2,7 @@ import createDataContext from '../context/createDataContext'
 import jsonServer from '../api/jsonServer'
 
 const blogReducer = (state, action) => {
+	// reducer action.type is case sensitive
 	switch (action.type) {
 		case 'add_blogPost':
 			return [
@@ -79,7 +80,9 @@ const getBlogPostList = (dispatch) => {
 	return async () => {
 		try {
 			// response.data === [{}, {}, {}]
+			// server address isn't case sensitive - i'm just following my convention
 			const response = await jsonServer.get('/blogPostList') 
+			// reducer IS case sensitive
 			dispatch({ type: 'get_blogPostList', payload: response.data })
 		} catch (e) {
 			console.log(`couldn't get blogposts! error: ${e}`)
