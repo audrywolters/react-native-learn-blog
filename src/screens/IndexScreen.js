@@ -17,7 +17,6 @@ const IndexScreen = ({ navigation }) => {
 		getBlogPostList()
 	}, [])
 
-
 	return (
 		<View>
 			<FlatList
